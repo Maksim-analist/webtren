@@ -38,8 +38,13 @@ namespace web_tren
             app.UseRouting();
 
             app.UseAuthorization();
+			app.MapGet("/", context =>
+			{
+				context.Response.Redirect("/Identity/Account/Login");
+				return Task.CompletedTask;
+			});
 
-            app.MapStaticAssets();
+			app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}")
